@@ -1,0 +1,21 @@
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/OpenSansMedium.ttf");
+  font-family: "Open Sans";
+  font-weight: 500;
+}
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/OpenSansSemiBold.ttf");
+  font-family: "Open Sans";
+  font-weight: 600;
+}
+@font-face {
+  font-display: swap;
+  font-style: normal;
+  src: url("/public/fonts/OpenSansBold.ttf");
+  font-family: "Open Sans";
+  font-weight: 700;
+}

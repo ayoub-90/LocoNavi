@@ -1,0 +1,89 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+const shapes = {
+  round: "rounded-[24px]",
+};
+const variants = {
+  fill: {
+    gray_100: "bg-gray-100 text-blue_gray-400",
+  },
+  outline: {
+    blue_600_49: "border-blue-600_49 border border-solid text-deep_purple-800",
+    deep_purple_800:
+      "border-deep_purple-800 border border-solid text-deep_purple-800",
+  },
+};
+const sizes = {
+  md: "h-[51px] pl-[16px] text-[11px]",
+  xs: "h-[43px] w-[450px] pl-[16px] text-xl",
+  xl: "h-[63px] pl-[16px] text-lg",
+  lg: "h-[52px] pl-[16px] text-xl",
+  sm: "h-[48px] pl-[16px] text-[11px]",
+};
+
+const Input1 = React.forwardRef(
+  (
+    {
+      className = "",
+      name = "",
+      placeholder = "",
+      type = "text",
+      children,
+      label = "",
+      prefix,
+      suffix,
+      onChange,
+      shape,
+      variant = "outline",
+      size = "sm",
+      color = "deep_purple_800",
+      ...restProps
+    },
+    ref
+  ) => {
+    const handleChange = (e) => {
+      if (onChange) onChange(e?.target?.value);
+    };
+
+    return (
+      <>
+        <label
+          className={`${className} flex items-center justify-start cursor-text  ${
+            (shape && shapes[shape]) || ""
+          } ${variants[variant]?.[color] || variants[variant] || ""} ${
+            sizes[size] || ""
+          }`}
+        >
+          {!!label && label}
+          {!!prefix && prefix}
+          <input
+            ref={ref}
+            type={type}
+            name={name}
+            onChange={handleChange}
+            placeholder={placeholder}
+            {...restProps}
+          />
+          {!!suffix && suffix}
+        </label>
+      </>
+    );
+  }
+);
+
+Input1.propTypes = {
+  className: PropTypes.string,
+  name: PropTypes.string,
+  placeholder: PropTypes.string,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  prefix: PropTypes.node,
+  suffix: PropTypes.node,
+  shape: PropTypes.oneOf(["round"]),
+  size: PropTypes.oneOf(["md", "xs", "xl", "lg", "sm"]),
+  variant: PropTypes.oneOf(["fill", "outline"]),
+  color: PropTypes.oneOf(["gray_100", "blue_600_49", "deep_purple_800"]),
+};
+
+export { Input1 };
